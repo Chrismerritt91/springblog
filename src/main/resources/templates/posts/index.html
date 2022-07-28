@@ -6,15 +6,11 @@
 
 <h1>Posts</h1>
 
-    <div th:each="product : ${products}">
-        <h3 th:text="${product.title}"></h3>
-        <p th:text="${product.body}"></p>
+    <div th:each="post : ${posts}">
+        <h3 th:text="${post.title}"></h3>
+        <p th:text="${post.body}"></p>
     </div>
+<br>
 
-<form th:action="@{/posts}" th:method="post">
-    <label for="title">Find post by title</label>
-    <input type="text" id="title" name="title" placeholder="Enter title">
-    <button>Submit</button>
-</form>
 </body>
 </html>
