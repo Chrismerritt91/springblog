@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Show Post')"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+
+<h2 th:text="${post.title}"></h2>
+<p th:text="${post.body}"></p>
+
+</body>
+</html>

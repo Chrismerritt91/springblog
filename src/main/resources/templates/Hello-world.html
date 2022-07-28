@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--need above attribute to run the expression language and is needed by the dependency-->
+<head th:replace="partials/partials.html :: head('Hello World')"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+<!--thyme leaf expression language-->
+<h1>Hello <span th:text="${name}">Fred</span></h1>
+
+</body>
+</html>

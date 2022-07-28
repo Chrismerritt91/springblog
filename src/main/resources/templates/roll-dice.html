@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Roll Result')"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+<!--<form th:if="${result == null}" th:action="@{/rolldice}" th:method="post">-->
+<!--    <label for="roll">Guess a number between 1 and 6, then roll the dice</label>-->
+<!--    <input type="number" id="roll" name="roll">-->
+<!--    <button>Roll</button>-->
+<!--</form>-->
+
+<h1>Guess a number between 1 and 6, then we'll roll the dice</h1>
+<h3><a th:href="@{/rolldice/1}">1</a></h3>
+<h3><a th:href="@{/rolldice/2}">2</a></h3>
+<h3><a th:href="@{/rolldice/3}">3</a></h3>
+<h3><a th:href="@{/rolldice/4}">4</a></h3>
+<h3><a th:href="@{/rolldice/5}">5</a></h3>
+<h3><a th:href="@{/rolldice/6}">6</a></h3>
+
+</body>
+</html>

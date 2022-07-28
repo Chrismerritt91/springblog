@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Roll Results')"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+
+<h1 th:if="${guess == roll}">You win the number was <span th:text="${roll}"></span></h1>
+<h1 th:if="${guess != roll}">You lose, you guessed <span th:text="${guess}"></span> the number was <span th:text="${roll}"></span></h1>
+
+</body>
+</html>
