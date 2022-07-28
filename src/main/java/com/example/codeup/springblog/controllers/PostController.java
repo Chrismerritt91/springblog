@@ -1,6 +1,7 @@
 package com.example.codeup.springblog.controllers;
 
 import com.example.codeup.springblog.model.Post;
+import com.example.codeup.springblog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +13,16 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    @GetMapping("/posts")
-    public String index(Model vModel){
+    private PostRepository postDao;
 
-        List<Post> postList = new ArrayList<>(Arrays.asList(
-                new Post(1,"post1", "hjdshnjdshnjeswbnecdxhj ecxhb nikfcexhjbwsndixnscuyhbuvincuebd"),
-                new Post(2,"post2", "ghfjdsbncxbncdxyuirebunirffce cxhjirecbxunfcd"),
-                new Post(3,"post3", "unficdxwbuniefcdwshujefcdbxhjncexhbnj fydeuncfhrfbecnxw")
-        ));
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
+// get all records
+    @GetMapping("/posts")
+    public String showAllPosts(Model vModel){
+
+        List<Post> postList = postDao.findAll();
 
         vModel.addAttribute("posts", postList);
 
@@ -28,26 +31,28 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String findPost(@PathVariable long id, Model vModel){
-
-        Post post = new Post(id,
-                "post " + id,
-                "hjdshnjdshnjeswbnecdxhj ecxhb nikfcexhjbwsndixnscuyhbuvincuebd");
-
-                vModel.addAttribute("post", post);
-
+        Post post = postDao.findById(id).get();
+        vModel.addAttribute("post", post);
         return "posts/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String createId(){
-        return "this page is for creating adds.";
+    public String createPost(){
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String postCreate(){
-        return "this page sends the create information to the dataBase.";
+    public String insertPost(@RequestParam String title, @RequestParam String body){
+        Post post = new Post(title, body);
+                postDao.save(post);
+        return "redirect:/posts";
+    }
+
+
+    @GetMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/posts";
     }
 
 }
