@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="partials/partials.html :: nav"></nav>
 <div class="container">
-    <h1>Posts</h1>
+    <header th:replace="partials/partials.html :: header('View Posts')"></header>
 
     <div th:each="post : ${posts}">
         <h3 th:text="${post.title}"></h3>
