@@ -6,9 +6,13 @@
 <header th:replace="partials/partials.html :: header('Post Details')"></header>
 
 <div class="container">
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
-    <h4>The maker of this post is: <span th:text="${post.user.email}"></span></h4>
+    <h2 th:text="${posts.title}"></h2>
+    <p th:text="${posts.body}"></p>
+    <h4>The maker of this post is: <span th:text="${posts.user.email}"></span></h4>
+
+    <div th:each="post : ${posts}">
+        <img th:src="${post.images.image}"alt="cat">
+    </div>
 
 </div>
 

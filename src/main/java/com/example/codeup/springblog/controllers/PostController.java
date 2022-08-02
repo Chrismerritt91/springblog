@@ -41,7 +41,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String findPost(@PathVariable long id, Model vModel){
         Post post = postDao.findById(id).get();
-        vModel.addAttribute("post", post);
+        vModel.addAttribute("posts", post);
         return "posts/show";
     }
 
