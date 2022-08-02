@@ -5,13 +5,13 @@
 <nav th:replace="partials/partials.html :: nav"></nav>
 <header th:replace="partials/partials.html :: header('Post Details')"></header>
 
-<div class="container">
+<div class="container col-md-8">
     <h2 th:text="${posts.title}"></h2>
     <p th:text="${posts.body}"></p>
     <h4>The maker of this post is: <span th:text="${posts.user.email}"></span></h4>
 
-    <div th:each="post : ${posts}">
-        <img th:src="${post.images.image}"alt="cat">
+    <div class="col-md-3" th:each="image : ${posts.images}">
+        <img class="w-100 h-100 m-2" th:src="${image.image}"alt="cats">
     </div>
 
 </div>

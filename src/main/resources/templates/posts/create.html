@@ -5,19 +5,18 @@
 <nav th:replace="partials/partials.html :: nav" ></nav>
 <main class="container">
     <header th:replace="partials/partials.html :: header('Create Post')"></header>
-    <form th:action="@{/posts/create}" th:method="post">
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
         <div class=" mb-3">
             <label class="form-label" for="title">Title</label>
-            <input class="form-control" type="text" id="title" name="title" placeholder="Enter title">
+            <input th:field="*{title}" class="form-control" type="text" id="title" name="title" placeholder="Enter title">
         </div>
         <div class=" mb-3">
             <label class="form-label" for="body">Content</label>
-            <textarea class="form-control" name="body" id="body" placeholder="Enter Content"></textarea>
+            <textarea th:field="*{body}" class="form-control" name="body" id="body" placeholder="Enter Content"></textarea>
         </div>
         <div class="d-grid">
             <button class="btn btn-dark btn-block">Submit</button>
         </div>
-
     </form>
 </main>
 
