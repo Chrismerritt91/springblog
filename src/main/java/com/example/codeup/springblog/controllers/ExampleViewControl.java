@@ -29,15 +29,5 @@ public class ExampleViewControl {
         return "search-results";
     }
 
-    @GetMapping("/login")
-    public String loginForm(){
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String processLogin(){
-        // authenticate user then..
-        return "redirect:/";
-    }
 
 }

@@ -9,10 +9,12 @@
     <h2 th:text="${posts.title}"></h2>
     <p th:text="${posts.body}"></p>
     <h4>The maker of this post is: <span th:text="${posts.user.email}"></span></h4>
-
+<div class="container d-flex">
     <div class="col-md-3" th:each="image : ${posts.images}">
         <img class="w-100 h-100 m-2" th:src="${image.image}"alt="cats">
     </div>
+</div>
+
 
 </div>
 

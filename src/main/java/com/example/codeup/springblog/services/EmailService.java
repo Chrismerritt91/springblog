@@ -27,7 +27,7 @@ public class EmailService {
         String body = "Thank you for posting to your Springblog! The title of your post is " + post.getTitle() + " If this was not you please contact customer support.";
         msg.setText(body);
 
-        SendGrid sg = new SendGrid("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\n");
+//        SendGrid sg = new SendGrid();
         Request request = new Request();
         try{
             this.emailSender.send(msg);
