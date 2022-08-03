@@ -4,26 +4,26 @@ import com.example.codeup.springblog.model.Post;
 import com.example.codeup.springblog.model.User;
 import com.example.codeup.springblog.repositories.PostRepository;
 import com.example.codeup.springblog.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.example.codeup.springblog.services.EmailService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public class PostController {
 
-    @Autowired
+
     private UserRepository userDao;
 
-    // two ways for dependency injections
+    private final EmailService emailService;
 
     private PostRepository postDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(UserRepository userDao, EmailService emailService, PostRepository postDao) {
+        this.userDao = userDao;
+        this.emailService = emailService;
         this.postDao = postDao;
     }
 
@@ -57,6 +57,7 @@ public class PostController {
         User user = userDao.findById(1L).get();
         post.setUser(user);
         postDao.save(post);
+        emailService.prepareAndSend(post, "You created a new post!");
         return "redirect:/posts";
     }
 
