@@ -15,11 +15,12 @@
             <textarea th:field="*{body}" class="form-control" name="body" id="body" placeholder="Enter Content"></textarea>
         </div>
         <div class="d-grid">
-            <button class="btn btn-dark btn-block">Submit</button>
+            <button class="btn btn-block" style="background-color: steelblue">Submit</button>
         </div>
     </form>
 </main>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
+<th:block th:replace="partials/partials.html :: scripts" ></th:block>
 </body>
 </html>

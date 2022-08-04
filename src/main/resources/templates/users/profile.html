@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="partials/partials.html :: head('Profile')"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+
+<div class="container col-md-8">
+    <header th:replace="partials/partials.html :: header('Welcome Back ' + ${user.username})"></header>
+
+    <div class="mb-3" th:each="post : ${user.posts}">
+        <h3 th:text="${post.title}"></h3>
+        <p th:text="${post.body}"></p>
+        <div class="d-flex">
+<!--            <div>-->
+<!--                <a class="ms-2" th:href="@{/posts/{id}/edit(id = ${post.id})}">Edit</a>-->
+<!--            </div>-->
+            <form th:action="@{/posts/{id}/edit(id = ${post.id})}" th:method="get">
+                <button class="border border-0" style="background-color: steelblue" >Edit</button>
+            </form>
+            <form th:action="@{/posts/{id}/delete(id = ${post.id})}" th:method="post">
+                <button class="border border-0 ms-2" style="background-color: steelblue" >Delete</button>
+            </form>
+        </div>
+
+    </div>
+    <br>
+
+</div>
+
+<th:block th:replace="partials/partials.html :: scripts"></th:block>
+</body>
+</html>

@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Sign up</title>
-</head>
+<head th:replace="partials/partials.html :: head('Sign Up')"></head>
 <body>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
 
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+<nav th:replace="partials/partials.html :: nav" ></nav>
 
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+<div class="container">
 
-    <input value="Sign me up!" type="submit" />
-</form>
+    <header th:replace="partials/partials.html :: header('Create an account')" ></header>
+
+    <form name="v" th:action="@{/sign-up}" method="POST" th:object="${user}">
+        <div class=" mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input name="username" class="form-control" id="username" th:field="*{username}" />
+        </div>
+
+        <div class=" mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input name="email" class="form-control" id="email" th:field="*{email}" />
+        </div>
+
+        <div class=" mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input name="password" class="form-control" id="password" type="password" th:field="*{password}" />
+        </div>
+
+        <div class="d-grid">
+            <button class="btn btn-block" style="background-color: steelblue">Submit</button>
+        </div>
+    </form>
+</div>
+<script>
+    function validate() {
+        if(document.v.username.value === "" || document.v.email === "" || document.v.password === ""){
+            alert("Input in all fields required!");
+           return  document.v.username.focus()
+
+        }
+    }
+</script>
+<th:block th:replace="partials/partials.html :: scripts" ></th:block>
 </body>
 </html>

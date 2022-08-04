@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials.html :: head('Posts')"></head>
 <body>
 <nav th:replace="partials/partials.html :: nav"></nav>
@@ -9,15 +10,16 @@
     <div class="mb-3" th:each="post : ${posts}">
         <h3 th:text="${post.title}"></h3>
         <p th:text="${post.body}"></p>
-        <div class="d-flex">
-            <a th:href="@{/posts/{id}(id = ${post.id})}">Details</a>
-            <a class="ms-2" th:href="@{/posts/{id}/edit(id = ${post.id})}">Edit</a>
+        <div class="d-flex" sec:authorize="isAuthenticated()">
+            <form th:action="@{/posts/{id}(id = ${post.id})}" th:method="get">
+                <button class="border border-0" style="background-color: steelblue">Details</button>
+            </form>
         </div>
 
     </div>
     <br>
 </div>
 
-
+<th:block th:replace="partials/partials.html :: scripts"></th:block>
 </body>
 </html>
